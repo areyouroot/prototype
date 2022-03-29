@@ -30,6 +30,12 @@ button:hover {
   background-color: rgb(0, 40, 134);
   color: white;
 }
+tr,th{
+    padding:8px;
+    border: 1px solid rgba(51, 51, 51, 0.867);
+    background-color: aliceblue;
+    font-size: larger;
+}
 </style>
 </head>
 <body style="background-image: url(62.jpg);color: aliceblue;">
@@ -44,30 +50,87 @@ button:hover {
     <img src="logo.png" style="text-align: left;">
     
     <button style="left: 15%; " onclick="order()">order</button>
-    <button style="left: 15%" onclick="contact()">contact us</button>
     </div>
+    <table style="color: black;width: 100%;visibility: hidden;" id="orderpg" style="display: none;">
+        <tr><th colspan="2">orderpage</th><th>cart</th></tr>
+        <tr>
+            <td> <img src="biriyani.jpg" style="width: 200px;height: 200px;padding: 5px;" alt=""></td>
+            <td >Biriyani<br>Rs:150</td>
+            <td><input type="checkbox" id="biriyani" onclick="total()"></td></tr>
+        <tr>
 
-    <div id="orderpg" style="display: none;" >orderpage</div>
-    <div id="contactpg"style="display: none;" >contact</div>
+            <td> <img src="bread.webp" style="width: 200px;height: 200px;padding: 5px;" alt=""></td>
+            <td >bread<br>Rs:30</td>
+            <td><input type="checkbox"id="bread" onclick="total()"></td></tr>
+
+        <tr>
+            <td> <img src="dhal.jpg" style="width: 200px;height: 200px;padding: 5px;" alt=""></td>
+            <td >dhal<br>Rs:50</td>
+            <td><input type="checkbox"id="dhal" onclick="total()"></td></tr>
+
+        <tr>
+            <td> <img src="egg.jpg" style="width: 200px;height: 200px;padding: 5px;" alt=""></td>
+            <td egg<br>Rs:30</td>
+            <td><input type="checkbox" id="egg" onclick="total()"></td></tr>
+
+        <tr>
+            <td> <img src="meals.webp" style="width: 200px;height: 200px;padding: 5px;" alt=""></td>
+            <td >rice<br>Rs:100</td>
+            <td><input type="checkbox" id="rice" onclick="total()"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5px;font-size: x-large;"> total :</td>
+            <td id = "total" style="padding: 5px;font-size: x-large;"></td>
+            </tr>
+    </table>
+    
+
 
 
     <script>
+        
         function order(){
             var x=document.getElementById("orderpg");
             var y=document.getElementById("contactpg");
-            if(x.style.display === "none"){
-                y.style.display = "none";
-                x.style.display = "block";
+            if(x.style.visibility === "hidden"){
+                x.style.visibility = "visible";
             }
+
+            else{
+                x.style.visibility = "hidden"
+            }
+            
         }
-        function contact(){
-            var x=document.getElementById("orderpg");
-            var y=document.getElementById("contactpg");
-            if(y.style.display === "none"){
-                x.style.display = "none";
-                y.style.display = "block";     
-            }       
+
+        function total(){
+            var cost = 0;
+            var cb1 = document.getElementById("biriyani");
+            var cb2 = document.getElementById("bread");
+            var cb3 = document.getElementById("dhal");
+            var cb4 = document.getElementById("egg");
+            var cb5 = document.getElementById("rice");
+            if (cb1.checked == true){
+                cost= 150 + cost;
+                
+            }
+            
+            if (cb2.checked == true){
+                cost= 30 + cost;
+            }
+            if (cb3.checked == true){
+                cost= 50 + cost;
+            }
+            if (cb4.checked == true){
+                cost= 30 + cost;
+            }
+            if (cb5.checked == true){
+                cost= 100 + cost;
+            }
+            
+            document.getElementById("total").innerHTML = cost;
+
         }
+
     </script>
     
 </body>
